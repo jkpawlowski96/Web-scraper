@@ -1,6 +1,6 @@
 from flask import Flask, Response
-import bs4
-import urllib.request
+from bs4 import BeautifulSoup
+import urllib.request as urllib2
 #from selectolax.parser import HTMLParser
 
 app= Flask(__name__)
@@ -11,13 +11,11 @@ def home():
 
 @app.route('/o/<path:adress>')
 def show_subpath(adress):
-    print('WEB adress: '+adress)
-    web_text=adress
-    webpage=str(urllib.request.urlopen(adress).read())
-    web_text = get_text(webpage)
+    page = urllib2.urlopen(adress)
+    web_text = get_text(page)
     
-    return string_to_file(web_text)
-    #return web_text
+    #return string_to_file(web_text)
+    return web_text
 
     
 def string_to_file(data):
@@ -29,8 +27,13 @@ def string_to_file(data):
 
 
 def get_text(html):
-    page = bs4.BeautifulSoup(html, 'html')
-    web_text = page.get_text(separator='\n')
+    soup = BeautifulSoup(html, 'html.parser')
+    #soup.find_all("div")
+    web_text = ''
+    for div in soup.find_all("div"):
+        web_text += div.text+' '
+    #page = bs4.BeautifulSoup(html, 'html')
+    #web_text = page.get_text(separator='\n')
     web_text = web_text.replace('\\n','')
     web_text = web_text.replace('\n','')
     web_text = web_text.replace('  ','')
