@@ -16,3 +16,11 @@ def get_text(adress):
 	web_text = web_text.replace('  ','')
 
 	return web_text
+
+
+def string_to_file(data):
+	return Response(
+	data,
+	mimetype="text/txt",
+	headers={"Content-disposition":
+			"attachment; filename=file.txt"})

@@ -1,8 +1,8 @@
 from flask import Flask, Response
 
-from text import get_text
+from text import get_text, string_to_file
 from images import get_images_bytes, get_images_links
-from data import data_add, data_display, data_text_display, data_images_display, data_images_display
+from data import data_add, data_display, data_text_display, data_images_display, data_images_display, data_csv
 
 app= Flask(__name__)
 
@@ -32,8 +32,10 @@ def order(adress):
 	#return web_text
 
 """-----------------------------------------------
-Command service to download resources form website
+Display resources form website
 """
+
+
 @app.route('/resources/display/')
 def display(): 
 	return data_display()
@@ -49,33 +51,17 @@ def display_text():
 """-----------------------------------------------
 Download resources form website
 """
+@app.route('/resources/download/')
+def download():
+	return data_csv()
+
 @app.route('/file/t/<path:adress>')
 def download_text(adress):
 	web_text=get_text(adress)
-	
 	return string_to_file(web_text)
 	#return web_text
 
 
-"""------------------------------------------------
-Downlaod all resources as csv file
-"""
-
-
-
-
-
-def string_to_file(data):
-	return Response(
-	data,
-	mimetype="text/txt",
-	headers={"Content-disposition":
-			"attachment; filename=file.txt"})
-
-def images_to_file(data):
-	return Response(data,
-		mimetype='application/zip',
-		headers={'Content-Disposition':'attachment;filename=images.zip'})
 
 
 
