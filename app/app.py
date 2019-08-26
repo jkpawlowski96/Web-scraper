@@ -1,9 +1,14 @@
 from flask import Flask, Response
-
+from flask_celery import make_celery
 from database import data_export, adress_done, adress_working
-from task import scrap_webiste
-app= Flask(__name__)
+from task import scrap_webiste, make_celery
 
+app= Flask(__name__)
+app.config.update(
+    CELERY_BROKER_URL='redis://localhost:6379',
+    CELERY_RESULT_BACKEND='redis://localhost:6379'
+)
+celery = make_celery(flask_app)
 
 @app.route("/")
 def home():
@@ -15,12 +20,14 @@ Command service to download resources form website
 @app.route('/order/<path:adress>')
 def order(adress):
 	if adress_done(adress) is False and adress_working(adress) is False:
-		if scrap_webiste(adress):
-			return 'accepted'
-		else:
-			return 'error'
+		scrap_webiste(adress).apply_async(args=[adress])
 	else:
 		return 'data in progress or exicts'
+
+@celery.task()
+def process_order(adress):
+	scrap_webiste(adress)
+
 """-----------------------------------------------
 Export resources form databese
 """
