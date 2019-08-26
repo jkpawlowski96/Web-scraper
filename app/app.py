@@ -1,9 +1,7 @@
 from flask import Flask, Response
 
-from text import get_text, string_to_file
-from images import get_images_bytes, get_images_links
-from data import data_add, data_display, data_text_display, data_images_display, data_images_display, data_csv
-
+from database import data_export, adress_done, adress_working
+from task import scrap_webiste
 app= Flask(__name__)
 
 
@@ -16,51 +14,24 @@ Command service to download resources form website
 """
 @app.route('/order/<path:adress>')
 def order(adress):
-	web_text = get_text(adress)
-	web_images_l = get_images_links(adress)
-	web_images_b = get_images_bytes(web_images_l)
-	row = {}
-	row['Adress']=adress
-	row['Text']=web_text
-	row['Images_links']=web_images_l
-	row['Images_bytes']=web_images_b
-	if data_add(row) is True: #and images in the future 
-		return 'succed :)'
+	if adress_done(adress) is False and adress_working(adress) is False:
+		if scrap_webiste(adress):
+			return 'accepted'
+		else:
+			return 'error'
 	else:
-		return 'FAILED!!!'
-	
-	#return web_text
-
+		return 'data in progress or exicts'
 """-----------------------------------------------
-Display resources form website
+Export resources form databese
 """
+@app.route('/export/')
+def export():
+	return data_export()
 
 
-@app.route('/resources/display/')
-def display(): 
-	return data_display()
-
-@app.route('/resources/display/images')
-def display_images(): 
-	return data_images_display()
-
-@app.route('/resources/display/text')
-def display_text(): 
-	return data_text_display()
-
-"""-----------------------------------------------
-Download resources form website
-"""
-@app.route('/resources/download/')
-def download():
-	return data_csv()
-
-@app.route('/file/t/<path:adress>')
-def download_text(adress):
-	web_text=get_text(adress)
-	return string_to_file(web_text)
-	#return web_text
-
+@app.route('/export/<path:adress>')
+def export_path(adress): 
+	return data_export(query={'Adress':adress})
 
 
 

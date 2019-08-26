@@ -1,6 +1,6 @@
 import urllib.request as request
 from bs4 import BeautifulSoup
-
+from flask import Response
 
 def get_text(adress):
 	page = request.urlopen(adress)
