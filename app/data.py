@@ -31,7 +31,7 @@ def data_text_display():
     global data
     return data[['Adress','Text']].to_html()
 
-def data_csv():
+def json_csv():
     global data
     resp = make_response(data.to_csv(index=False))
     resp.headers["Content-Disposition"] = "attachment; filename=data.csv"

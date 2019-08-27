@@ -1,14 +1,11 @@
 from flask import Flask, Response
-from flask_celery import make_celery
-from database import data_export, adress_done, adress_working
-from task import scrap_webiste, make_celery
+from database import data_export, adress_done, adress_working, json_to_scv
+from task import init_Scrapper
 
 app= Flask(__name__)
-app.config.update(
-    CELERY_BROKER_URL='redis://localhost:6379',
-    CELERY_RESULT_BACKEND='redis://localhost:6379'
-)
-celery = make_celery(flask_app)
+
+scrapper = init_Scrapper()
+
 
 @app.route("/")
 def home():
@@ -19,28 +16,54 @@ Command service to download resources form website
 """
 @app.route('/order/<path:adress>')
 def order(adress):
-	if adress_done(adress) is False and adress_working(adress) is False:
-		scrap_webiste(adress).apply_async(args=[adress])
+	if adress_done(adress) is False:
+		if adress_working(adress) is False:
+			scrapper.process_order(adress)
+			return 'starting'
+		else:
+			return 'in progress'
 	else:
-		return 'data in progress or exicts'
+		return 'finished'
 
-@celery.task()
-def process_order(adress):
-	scrap_webiste(adress)
 
 """-----------------------------------------------
 Export resources form databese
 """
-@app.route('/export/')
-def export():
+@app.route('/export/json/')
+def export_json():
 	return data_export()
 
+@app.route('/export/csv/')
+def export_scv():
+	return json_to_scv(data_export())
 
-@app.route('/export/<path:adress>')
-def export_path(adress): 
+@app.route('/export/json/<path:adress>')
+def export_json_path(adress): 
 	return data_export(query={'Adress':adress})
 
 
+@app.route('/export/csv/<path:adress>')
+def export_csv_path(adress): 
+	return json_to_scv(data_export(query={'Adress':adress})) 
+
+"""-----------------------------------------------
+Export resources form databese
+"""
+
+@app.route('/download/json/')
+def download_json():
+	return data_export(download=True)
+
+@app.route('/download/csv/')
+def download_scv():
+	return json_to_scv(data_export(), download=True)
+
+@app.route('/download/json/<path:adress>')
+def download_json_path(adress): 
+	return data_export(query={'Adress':adress},download=True)
 
 
+@app.route('/download/csv/<path:adress>')
+def download_csv_path(adress): 
+	return json_to_scv(data_export(query={'Adress':adress}), download=True) 
 

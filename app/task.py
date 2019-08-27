@@ -1,26 +1,17 @@
-
 from text import get_text, string_to_file
 from images import get_images_bytes, get_images_links
-from database import data_add_resource
+from database import data_add_resource, adress_done, adress_working
+import threading
+import time
+from random import randint
 
-from celery import Celery
+"""Queue of adress to scrap and add resources to database"""
 
 
-def make_celery(app):
-    celery = Celery(
-        app.import_name,
-        backend=app.config['CELERY_RESULT_BACKEND'],
-        broker=app.config['CELERY_BROKER_URL']
-    )
-    celery.conf.update(app.config)
-
-    class ContextTask(celery.Task):
-        def __call__(self, *args, **kwargs):
-            with app.app_context():
-                return self.run(*args, **kwargs)
-
-    celery.Task = ContextTask
-    return celery
+def init_Scrapper():
+	mythread = Scrapper(name = "Thread-{}".format(1))  # ...Instantiate a thread and pass a unique ID to it
+	mythread.start()                                   # ...Start the thread, invoke the run method
+	return mythread
 
 
 def scrap_webiste(adress):	
@@ -36,5 +27,34 @@ def scrap_webiste(adress):
 		return True
 	else:
 		return False
-    
-    
+
+class Scrapper(threading.Thread):
+
+	job_queue=[]
+
+	def run(self):
+		while(True):
+			try:
+				adress = self.job_queue.pop(0)  # Take adress to do from the stack
+			except:
+				time.sleep(2)
+				continue
+			try:
+				adress_working(adress, value=True)  # Job is not working anymore. Adress is already in database
+				results = scrap_website(adress)
+
+				if results is True:
+					adress_working(adress,value=False)  # Job is not working anymore. Adress is already in database
+					continue
+					# "Thread-x finished!"
+				else:
+					continue  # Something was wrong
+			except:
+				pass
+	
+	def process_order(self, adress):
+		self.job_queue.append(adress)
+
+
+
+
