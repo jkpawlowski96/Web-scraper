@@ -5,12 +5,14 @@ from database import data_add_resource
 
 from celery import Celery
 
+broker_url = 'amqp://myuser:mypassword@localhost:5672/myvhost'
+
 
 def make_celery(app):
     celery = Celery(
         app.import_name,
         backend=app.config['CELERY_RESULT_BACKEND'],
-        broker=app.config['CELERY_BROKER_URL']
+        broker=app.config[broker_url]
     )
     celery.conf.update(app.config)
 
