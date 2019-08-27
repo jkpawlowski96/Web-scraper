@@ -12,7 +12,9 @@ def home():
 	return "hello world"
 
 """-----------------------------------------------
-Command service to download resources form website
+Command service to download resources form website,
+or check status of task
+
 """
 @app.route('/order/<path:adress>')
 def order(adress):

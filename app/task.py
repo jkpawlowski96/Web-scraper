@@ -14,7 +14,7 @@ def init_Scrapper():
 	return mythread
 
 
-def scrap_webiste(adress):	
+def scrap_website(adress):	
 	web_text = get_text(adress)
 	web_images_l = get_images_links(adress)
 	web_images_b = get_images_bytes(web_images_l)
@@ -40,9 +40,8 @@ class Scrapper(threading.Thread):
 				time.sleep(2)
 				continue
 			try:
-				adress_working(adress, value=True)  # Job is not working anymore. Adress is already in database
+				adress_working(adress,value=True)
 				results = scrap_website(adress)
-
 				if results is True:
 					adress_working(adress,value=False)  # Job is not working anymore. Adress is already in database
 					continue
