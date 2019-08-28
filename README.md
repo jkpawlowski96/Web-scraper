@@ -28,12 +28,12 @@ To let service scrap resources from website, just make an order:
 
 http://0.0.0.0:5000/order/ _WEBSITE_
 
-where _WEBSITE_ means web adress with http://
+where _WEBSITE_ means web address with http://
 
 ##### Try this examples:
 
 - http://0.0.0.0:5000/order/https://www.github.com/
-- http://0.0.0.0:5000/order/https://www.medium.com/
+- http://0.0.0.0:5000/order/https://en.wikipedia.org/wiki/Website
 - http://0.0.0.0:5000/order/https://www.semantive.pl/
 
 <a name="c"></a>
@@ -47,12 +47,12 @@ Service answers:
 
 http://0.0.0.0:5000/order/ _WEBSITE_
 
-- where _WEBSITE_ means web adress with http://
+- where _WEBSITE_ means web address with http://
 
 ##### Try this examples:
 
 - http://0.0.0.0:5000/order/https://www.github.com/
-- http://0.0.0.0:5000/order/https://www.medium.com/
+- http://0.0.0.0:5000/order/https://en.wikipedia.org/wiki/Website
 - http://0.0.0.0:5000/order/https://www.semantive.pl/
 
 <a name="e"></a>
@@ -65,7 +65,7 @@ Funcion display resources in a two formats:
 
 http://0.0.0.0:5000/export/ _FORMAT_ / _WEBSITE_
 
-- where _WEBSITE_ means web adress with http://
+- where _WEBSITE_ means web address with http://
 **if value missed**, service returns **all data**
 - where _FORMAT_ json or csv
 
@@ -76,11 +76,11 @@ http://0.0.0.0:5000/export/ _FORMAT_ / _WEBSITE_
 
 - http://0.0.0.0:5000/export/json/https://www.github.com/
 
-- http://0.0.0.0:5000/export/json/https://www.medium.com/
+- http://0.0.0.0:5000/export/json/https://en.wikipedia.org/wiki/Website
 
 - http://0.0.0.0:5000/export/json/https://www.semantive.pl/
 - http://0.0.0.0:5000/export/csv/https://www.github.com/
-- http://0.0.0.0:5000/export/csv/https://www.medium.com/
+- http://0.0.0.0:5000/export/csv/https://en.wikipedia.org/wiki/Website
 - http://0.0.0.0:5000/export/csv/https://www.semantive.pl/
 
 
@@ -94,7 +94,7 @@ Funcion is very simillar to *export*. *Downlaod* funcion allows to **download** 
 
 http://0.0.0.0:5000/download/ _FORMAT_ / _WEBSITE_
 
-- where _WEBSITE_ means web adress with http://
+- where _WEBSITE_ means web address with http://
 **if value missed**, service returns **all data**
 - where _FORMAT_ json or csv
 
@@ -105,9 +105,9 @@ http://0.0.0.0:5000/download/ _FORMAT_ / _WEBSITE_
 - http://0.0.0.0:5000/download/csv
 
 - http://0.0.0.0:5000/download/json/https://www.github.com/
-- http://0.0.0.0:5000/download/json/https://www.medium.com/
+- http://0.0.0.0:5000/download/json/https://en.wikipedia.org/wiki/Website
 - http://0.0.0.0:5000/download/json/https://www.semantive.pl/
 
 - http://0.0.0.0:5000/download/csv/https://www.github.com/
-- http://0.0.0.0:5000/download/csv/https://www.medium.com/
+- http://0.0.0.0:5000/download/csv/https://en.wikipedia.org/wiki/Website
 - http://0.0.0.0:5000/download/csv/https://www.semantive.pl/
