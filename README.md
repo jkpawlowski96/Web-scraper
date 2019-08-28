@@ -26,15 +26,15 @@ http://0.0.0.0:5000/
 
 To let service scrap resources from website, just make an order:
 
-http://0.0.0.0:5000/order/$WEBSITE
+http://0.0.0.0:5000/order/_WEBSITE_
 
-where $WEBSITE means web adress with http://
+where _WEBSITE_ means web adress with http://
 
-#####Try this examples:
+##### Try this examples:
 
-http://0.0.0.0:5000/order/https://www.github.com/
-http://0.0.0.0:5000/order/https://www.medium.com/
-http://0.0.0.0:5000/order/https://www.semantive.pl/
+- http://0.0.0.0:5000/order/https://www.github.com/
+- http://0.0.0.0:5000/order/https://www.medium.com/
+- http://0.0.0.0:5000/order/https://www.semantive.pl/
 
 <a name="c"></a>
 # Check order status
@@ -49,11 +49,11 @@ http://0.0.0.0:5000/order/_WEBSITE_
 
 - where _WEBSITE_ means web adress with http://
 
-#####Try this examples:
+##### Try this examples:
 
-http://0.0.0.0:5000/order/https://www.github.com/
-http://0.0.0.0:5000/order/https://www.medium.com/
-http://0.0.0.0:5000/order/https://www.semantive.pl/
+- http://0.0.0.0:5000/order/https://www.github.com/
+- http://0.0.0.0:5000/order/https://www.medium.com/
+- http://0.0.0.0:5000/order/https://www.semantive.pl/
 
 <a name="e"></a>
 # Export
@@ -69,18 +69,20 @@ http://0.0.0.0:5000/export/_FORMAT_/_WEBSITE_
 **if value missed**, service returns **all data**
 - where _FORMAT_ json or csv
 
-#####Try this examples:
+##### Try this examples:
 
-http://0.0.0.0:5000/export/json
-http://0.0.0.0:5000/export/csv
+- http://0.0.0.0:5000/export/json
+- http://0.0.0.0:5000/export/csv
 
-http://0.0.0.0:5000/export/json/https://www.github.com/
-http://0.0.0.0:5000/export/json/https://www.medium.com/
-http://0.0.0.0:5000/export/json/https://www.semantive.pl/
+- http://0.0.0.0:5000/export/json/https://www.github.com/
 
-http://0.0.0.0:5000/export/csv/https://www.github.com/
-http://0.0.0.0:5000/export/csv/https://www.medium.com/
-http://0.0.0.0:5000/export/csv/https://www.semantive.pl/
+- http://0.0.0.0:5000/export/json/https://www.medium.com/
+
+- http://0.0.0.0:5000/export/json/https://www.semantive.pl/
+- http://0.0.0.0:5000/export/csv/https://www.github.com/
+- http://0.0.0.0:5000/export/csv/https://www.medium.com/
+- http://0.0.0.0:5000/export/csv/https://www.semantive.pl/
+
 
 <a name="e"></a>
 # Download
@@ -97,15 +99,15 @@ http://0.0.0.0:5000/download/_FORMAT_/_WEBSITE_
 - where _FORMAT_ json or csv
 
 
-#####Try this examples:
+##### Try this examples:
 
-http://0.0.0.0:5000/download/json
-http://0.0.0.0:5000/download/csv
+- http://0.0.0.0:5000/download/json
+- http://0.0.0.0:5000/download/csv
 
-http://0.0.0.0:5000/download/json/https://www.github.com/
-http://0.0.0.0:5000/download/json/https://www.medium.com/
-http://0.0.0.0:5000/download/json/https://www.semantive.pl/
+- http://0.0.0.0:5000/download/json/https://www.github.com/
+- http://0.0.0.0:5000/download/json/https://www.medium.com/
+- http://0.0.0.0:5000/download/json/https://www.semantive.pl/
 
-http://0.0.0.0:5000/download/csv/https://www.github.com/
-http://0.0.0.0:5000/download/csv/https://www.medium.com/
-http://0.0.0.0:5000/download/csv/https://www.semantive.pl/
+- http://0.0.0.0:5000/download/csv/https://www.github.com/
+- http://0.0.0.0:5000/download/csv/https://www.medium.com/
+- http://0.0.0.0:5000/download/csv/https://www.semantive.pl/
