@@ -6,10 +6,9 @@ app= Flask(__name__)
 
 scrapper = init_Scrapper()
 
-
 @app.route("/")
 def home():
-	return "hello world"
+	return '<h1>hello world</h1>'
 
 """-----------------------------------------------
 Command service to download resources form website,
@@ -27,7 +26,6 @@ def order(adress):
 	else:
 		return 'finished'
 
-
 """-----------------------------------------------
 Export resources form databese
 """
@@ -42,7 +40,6 @@ def export_scv():
 @app.route('/export/json/<path:adress>')
 def export_json_path(adress): 
 	return data_export(query={'Adress':adress})
-
 
 @app.route('/export/csv/<path:adress>')
 def export_csv_path(adress): 
@@ -69,3 +66,5 @@ def download_json_path(adress):
 def download_csv_path(adress): 
 	return json_to_scv(data_export(query={'Adress':adress}), download=True) 
 
+if __name__=="__main__":
+	app.run(host="0.0.0.0")
