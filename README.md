@@ -26,7 +26,7 @@ http://0.0.0.0:5000/
 
 To let service scrap resources from website, just make an order:
 
-http://0.0.0.0:5000/order/_WEBSITE_
+http://0.0.0.0:5000/order/ _WEBSITE_
 
 where _WEBSITE_ means web adress with http://
 
@@ -45,7 +45,7 @@ Service answers:
 - in progress : service is still working at it
 - finished : resources from website are already in database
 
-http://0.0.0.0:5000/order/_WEBSITE_
+http://0.0.0.0:5000/order/ _WEBSITE_
 
 - where _WEBSITE_ means web adress with http://
 
@@ -63,7 +63,7 @@ Funcion display resources in a two formats:
 - json
 - csv
 
-http://0.0.0.0:5000/export/_FORMAT_/_WEBSITE_
+http://0.0.0.0:5000/export/ _FORMAT_ / _WEBSITE_
 
 - where _WEBSITE_ means web adress with http://
 **if value missed**, service returns **all data**
@@ -92,7 +92,7 @@ Funcion is very simillar to *export*. *Downlaod* funcion allows to **download** 
 - json
 - csv
 
-http://0.0.0.0:5000/download/_FORMAT_/_WEBSITE_
+http://0.0.0.0:5000/download/ _FORMAT_ / _WEBSITE_
 
 - where _WEBSITE_ means web adress with http://
 **if value missed**, service returns **all data**
