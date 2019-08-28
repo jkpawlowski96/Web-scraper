@@ -4,3 +4,19 @@ services:
     build: ./app
     ports:
       - "5000:5000"
+      
+  selenium-hub:
+    image: selenium/hub:3.141.59-titanium
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+
+  firefox:
+    image: selenium/node-firefox:3.141.59-titanium
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
