@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, send_from_directory
 from database import data_export, adress_done, adress_working, json_to_scv
 from task import init_Scrapper
 
@@ -8,7 +8,8 @@ scrapper = init_Scrapper()
 
 @app.route("/")
 def home():
-	return '<h1>hello world</h1>'
+	return  '<h1>Hello Semantive!</h1>'
+
 
 """-----------------------------------------------
 Command service to download resources form website,

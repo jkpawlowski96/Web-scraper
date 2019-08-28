@@ -10,7 +10,7 @@ PASS = os.getenv('PYNYWHRPASS')
 caps = DesiredCapabilities.FIREFOX
 
 driver = webdriver.Remote(command_executor='http://172.17.0.3:5555/wd/hub',desired_capabilities=caps)
-driver.get('http://127.0.0.1:5000/')
+driver.get('http://0.0.0.0:5000')
 
 
 print('Home page')
