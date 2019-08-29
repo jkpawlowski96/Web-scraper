@@ -1,5 +1,5 @@
 from flask import Flask, Response, send_from_directory
-from database import data_export, adress_done, adress_working, json_to_scv
+from database import data_export, address_done, address_working, json_to_scv
 from task import init_scrapper
 
 # flask app
@@ -30,9 +30,9 @@ def order(address):
 	:param address: website address example: https://www.youtube.com/
 	:return: service_answer
 	"""
-	if adress_done(address) is False:
+	if address_done(address) is False:
 		# resources are not in database
-		if adress_working(address) is False:
+		if address_working(address) is False:
 			# service is not scraping given address
 			scrapper.process_order(address)  # scrap website
 			return 'starting'

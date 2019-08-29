@@ -1,6 +1,6 @@
 from text import get_text, string_to_file
 from images import get_images_bytes, get_images_links
-from database import data_add_resource, adress_done, adress_working
+from database import data_add_resource, address_done, address_working
 import threading
 import time
 from random import randint
@@ -14,12 +14,12 @@ def init_scrapper():
 	return mythread
 
 
-def scrap_website(adress):	
-	web_text = get_text(adress)
-	web_images_l = get_images_links(adress)
+def scrap_website(address):	
+	web_text = get_text(address)
+	web_images_l = get_images_links(address)
 	web_images_b = get_images_bytes(web_images_l)
 	row = {}
-	row['Address']=adress
+	row['Address']=address
 	row['Text']=web_text
 	row['Images']=web_images_b
 	row['Images_links']=web_images_l
@@ -40,10 +40,10 @@ class Scrapper(threading.Thread):
 				time.sleep(2)
 				continue
 			try:
-				adress_working(adress,value=True)
+				address_working(adress,value=True)
 				results = scrap_website(adress)
 				if results is True:
-					adress_working(adress,value=False)  # Job is not working anymore. Adress is already in database
+					address_working(adress,value=False)  # Job is not working anymore. Adress is already in database
 					continue
 					# "Thread-x finished!"
 				else:
@@ -51,8 +51,8 @@ class Scrapper(threading.Thread):
 			except:
 				pass
 	
-	def process_order(self, adress):
-		self.job_queue.append(adress)
+	def process_order(self, address):
+		self.job_queue.append(address)
 
 
 
