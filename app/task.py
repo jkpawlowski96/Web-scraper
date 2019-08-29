@@ -51,13 +51,20 @@ class Scrapper(threading.Thread):
 			except:
 				time.sleep(2)
 				continue
+			# first check resources
+			if address_done(address) is True: 
+				continue
+			# and working tasks..
+			if address_working(address) is True: 
+				continue	
+			# starting process
 			try:
 				address_working(address,value=True)  # add as working task
 				results = scrap_website(address)  # scrap website
 				if results is True:
 					address_working(address,value=False)  # Job is not working anymore. Adress is already in database
 					continue
-					# "Thread-x finished!"
+	
 				else:
 					continue  # Something was wrong
 			except:

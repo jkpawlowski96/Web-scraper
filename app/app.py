@@ -30,19 +30,28 @@ def order(address):
 	:param address: website address example: https://www.youtube.com/
 	:return: service_answer
 	"""
+	scrapper.process_order(address)  # scrap website
+	return "ok"
+
+
+@app.route('/check/<path:address>')
+def check(address):
+	"""
+	Function to chech address in resources
+	:param address: website address example: https://www.youtube.com/
+	:return: service_answer
+	"""
 	if address_done(address) is False:
 		# resources are not in database
 		if address_working(address) is False:
 			# service is not scraping given address
-			scrapper.process_order(address)  # scrap website
-			return 'starting'
+			return 'not found'
 		else:
 			# # service is scraping given address
 			return 'in progress'
 	else:
 		# resources are already in database
 		return 'finished'
-
 
 """-----------------------------------------------------------------
 Export resources form database

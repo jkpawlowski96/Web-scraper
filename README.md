@@ -41,7 +41,7 @@ where _WEBSITE_ means web address with http://
 
 Service answers:
 
-- starting : service just started to process your order
+- not found : no task and resources from this adress
 - in progress : service is still working at it
 - finished : resources from website are already in database
 
@@ -51,9 +51,9 @@ http://0.0.0.0:5000/order/ _WEBSITE_
 
 ##### Try this examples:
 
-- http://0.0.0.0:5000/order/https://www.github.com/
-- http://0.0.0.0:5000/order/https://en.wikipedia.org/wiki/Website
-- http://0.0.0.0:5000/order/https://www.semantive.pl/
+- http://0.0.0.0:5000/check/https://www.github.com/
+- http://0.0.0.0:5000/check/https://en.wikipedia.org/wiki/Website
+- http://0.0.0.0:5000/check/https://www.semantive.pl/
 
 <a name="e"></a>
 # Export
