@@ -8,7 +8,7 @@ from random import randint
 """Queue of adress to scrap and add resources to database"""
 
 
-def init_Scrapper():
+def init_scrapper():
 	mythread = Scrapper(name = "Thread-{}".format(1))  # ...Instantiate a thread and pass a unique ID to it
 	mythread.start()                                   # ...Start the thread, invoke the run method
 	return mythread
@@ -19,7 +19,7 @@ def scrap_website(adress):
 	web_images_l = get_images_links(adress)
 	web_images_b = get_images_bytes(web_images_l)
 	row = {}
-	row['Adress']=adress
+	row['Address']=adress
 	row['Text']=web_text
 	row['Images']=web_images_b
 	row['Images_links']=web_images_l

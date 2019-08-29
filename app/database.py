@@ -19,7 +19,7 @@ db = db_init()
 
 def data_add_task(adress):
     global db
-    db.tasks.insert_one({'Adress':adress})
+    db.tasks.insert_one({'Address':adress})
     return True
 
 def data_add_resource(row):
@@ -30,20 +30,20 @@ def data_add_resource(row):
 def adress_working(adress,  value=None):
     global db
     if value is True:
-        db.tasks.insert_one({'Adress':adress})
+        db.tasks.insert_one({'Address':adress})
         return True
 
     if value is False:
-        db.tasks.delete_many({'Adress':adress})
+        db.tasks.delete_many({'Address':adress})
         return False
 
-    x = list(db.tasks.find({'Adress':adress}))
+    x = list(db.tasks.find({'Address':adress}))
     if len(x)==0:
         return False
     else:
         return True
 
-def data_export(colums={'Adress':1,'Text':1,'Images':1,'Images_links':1,'_id':0},query={}, download=False):
+def data_export(colums={'Address':1,'Text':1,'Images':1,'Images_links':1,'_id':0},query={}, download=False):
     global db
 
     data = db.resources.find(query,colums)
@@ -62,7 +62,7 @@ def data_export(colums={'Adress':1,'Text':1,'Images':1,'Images_links':1,'_id':0}
 
 def adress_done(adress):
     global db
-    x = list(db.resources.find({'Adress':adress}))
+    x = list(db.resources.find({'Address':adress}))
     if len(x)==0:
         return False
     else:
