@@ -45,7 +45,7 @@ Service answers:
 - in progress : service is still working at it
 - finished : resources from website are already in database
 
-http://0.0.0.0:5000/order/ _WEBSITE_
+http://0.0.0.0:5000/check/ _WEBSITE_
 
 - where _WEBSITE_ means web address with http://
 
