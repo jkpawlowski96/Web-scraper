@@ -14,7 +14,7 @@ def home():
 	Homepage
 	:return:
 	"""
-	return  '<h1>Hello Semantive!</h1>'
+	return  '<h1>Hello World!</h1>'
 
 
 """-----------------------------------------------------------------
