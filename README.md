@@ -1,4 +1,4 @@
-# Semantive reqruitment task documentation
+# Reqruitment task documentation
 ## Author: Jakub Pawłowski
 
 ###  Shortcuts:
@@ -12,13 +12,13 @@
 <a name="r"></a>
 # How to run
 
-Make sure you are in Semanvite project directory and run in a console:
+Make sure you are in project directory and run in a console:
 <pre><code class="sh">
 sudo docker-compose build
 sudo docker-compose up
 </code></pre>
 
-If container build succed, you can try Hello Semantive! homepage:
+If container build succed, you can try Hello World! homepage:
 http://0.0.0.0:5000/
 
 <a name="o"></a>
